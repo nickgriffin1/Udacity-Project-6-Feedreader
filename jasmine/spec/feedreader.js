@@ -26,7 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
@@ -52,7 +51,6 @@ $(function() {
          });
     });
 
-
     /* TODO: Write a new test suite named "The menu" */
 
         /* TODO: Write a test that ensures the menu element is
@@ -68,27 +66,29 @@ $(function() {
           */
 
     describe('The menu', function() {
-        var icon = $('.menu-icon-link');
+        var icon;
+
+        beforeEach(function() {
+            icon = $('.menu-icon-link');
+        });
 
         it('is hidden by default', function() {
             expect($("body").hasClass("menu-hidden")).toBe(true);
         });
 
-        it('appears when clicked', function() {
+        it('appears when clicked and disappears when clicked again', function() {
             if ($("body").hasClass("menu-hidden")) {
                 icon.click()
 
                 expect($("body").hasClass("menu-hidden")).toBe(false);
             } 
-        });
 
-        it('disappears when clicked again', function() {
             if (!$("body").hasClass("menu-hidden")) {
                 icon.click();
 
                 expect($("body").hasClass("menu-hidden")).toBe(true);
             }
-        })
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
@@ -101,8 +101,18 @@ $(function() {
          */
 
     describe('Initial Entries', function() {
-        it('are present', function() {
+        var entries;
 
+        beforeEach(function(done) {
+            loadFeed(0);
+
+            entries = $(".entry").children('h2');
+
+            done();
+        });
+
+        it('are present', function() {
+            expect(entries).not.toBe(null);
         });
     });
 
@@ -114,8 +124,22 @@ $(function() {
          */
 
     describe('New Feed Selection', function() {
-        it('', function() {
+        var entries;
 
+        beforeEach(function(done) {
+            loadFeed(0);
+
+            done();
+
+            entries = $(".entry").children('h2');
+        });
+
+        it('content changes when a new feed is loaded', function(done) {
+            loadFeed(1);
+
+            expect($(".entry").children('h2')).not.toEqual(entries);
+
+            done();
         });
     });
 }());
