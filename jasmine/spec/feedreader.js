@@ -78,7 +78,7 @@ $(function() {
 
         it('appears when clicked and disappears when clicked again', function() {
             if ($("body").hasClass("menu-hidden")) {
-                icon.click()
+                icon.click();
 
                 expect($("body").hasClass("menu-hidden")).toBe(false);
             } 
