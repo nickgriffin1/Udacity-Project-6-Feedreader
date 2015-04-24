@@ -104,9 +104,9 @@ $(function() {
         var entries;
 
         beforeEach(function(done) {
-            loadFeed(0);
-
-            entries = $(".feed").html();
+            loadFeed(0, (function() {
+                entries = $(".feed").html();
+            }));
 
             done();
         });
@@ -127,19 +127,17 @@ $(function() {
         var entries;
 
         beforeEach(function(done) {
-            loadFeed(1);
+            loadFeed(1, (function() {
+                entries = $(".feed").html();
+            }));
 
             done();
-
-            entries = $(".feed").html();
         });
 
         it('content changes when a new feed is loaded', function(done) {
-            loadFeed(2);
+            loadFeed(2, done);
 
             expect($(".feed").html()).not.toEqual(entries);
-
-            done();
         });
     });
 }());
