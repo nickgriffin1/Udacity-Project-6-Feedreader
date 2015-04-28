@@ -9,6 +9,7 @@
  * to ensure they don't run until the DOM is ready.
  */
 $(function() {
+    "use strict";
     /* This is our first test suite - a test suite just contains
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
@@ -32,7 +33,7 @@ $(function() {
          */
 
          it('all have URLs', function() {
-            for(x = 0; x < allFeeds.length; x++) {
+            for(var x = 0; x < allFeeds.length; x++) {
                 expect(allFeeds[x].url).toBeDefined();
                 expect(allFeeds[x].url).not.toBe('');
             }
@@ -44,7 +45,7 @@ $(function() {
          */
 
          it('all have names', function() {
-            for(x = 0; x < allFeeds.length; x++) {
+            for(var x = 0; x < allFeeds.length; x++) {
                 expect(allFeeds[x].name).toBeDefined();
                 expect(allFeeds[x].name).not.toBe('');
             }
